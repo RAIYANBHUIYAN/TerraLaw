@@ -1,0 +1,244 @@
+{
+  "request_log": [
+    {
+      "timestamp": "2026-03-07T20:49:20.293423",
+      "mode": "rag",
+      "latency_ms": 2043.94,
+      "prompt_tokens": 1146,
+      "completion_tokens": 264,
+      "total_tokens": 1410,
+      "status": "ok",
+      "model": "llama-3.3-70b-versatile",
+      "dispute_label": "Legacy request"
+    },
+    {
+      "timestamp": "2026-03-07T20:51:54.432629",
+      "mode": "llm_fallback",
+      "latency_ms": 1208.29,
+      "prompt_tokens": 37,
+      "completion_tokens": 53,
+      "total_tokens": 90,
+      "status": "ok",
+      "model": "llama-3.3-70b-versatile",
+      "dispute_label": "Legacy request"
+    },
+    {
+      "timestamp": "2026-03-07T20:52:04.525022",
+      "mode": "llm_fallback",
+      "latency_ms": 477.71,
+      "prompt_tokens": 39,
+      "completion_tokens": 30,
+      "total_tokens": 69,
+      "status": "ok",
+      "model": "llama-3.3-70b-versatile",
+      "dispute_label": "Legacy request"
+    },
+    {
+      "timestamp": "2026-03-07T20:58:30.540302",
+      "dispute_label": "Pre-emption and co-sharer disputes",
+      "mode": "rag",
+      "latency_ms": 2481.06,
+      "prompt_tokens": 1286,
+      "completion_tokens": 349,
+      "total_tokens": 1635,
+      "status": "ok",
+      "model": "llama-3.3-70b-versatile"
+    },
+    {
+      "timestamp": "2026-03-07T20:58:31.798541",
+      "dispute_label": "Land acquisition, requisition, and compensation",
+      "mode": "rag",
+      "latency_ms": 1212.12,
+      "prompt_tokens": 1161,
+      "completion_tokens": 255,
+      "total_tokens": 1416,
+      "status": "ok",
+      "model": "llama-3.3-70b-versatile"
+    },
+    {
+      "timestamp": "2026-03-08T09:29:25.646183",
+      "dispute_label": "Sale and transfer of immovable property",
+      "mode": "rag",
+      "latency_ms": 2634.25,
+      "prompt_tokens": 1207,
+      "completion_tokens": 276,
+      "total_tokens": 1483,
+      "status": "ok",
+      "model": "llama-3.3-70b-versatile"
+    },
+    {
+      "timestamp": "2026-03-08T09:31:13.058873",
+      "dispute_label": "Pre-emption and co-sharer disputes",
+      "mode": "rag",
+      "latency_ms": 1797.44,
+      "prompt_tokens": 1210,
+      "completion_tokens": 300,
+      "total_tokens": 1510,
+      "status": "ok",
+      "model": "llama-3.3-70b-versatile"
+    },
+    {
+      "timestamp": "2026-03-08T09:53:14.240469",
+      "dispute_label": "Pre-emption and co-sharer disputes",
+      "mode": "rag",
+      "latency_ms": 2582.91,
+      "prompt_tokens": 1210,
+      "completion_tokens": 364,
+      "total_tokens": 1574,
+      "status": "ok",
+      "model": "llama-3.3-70b-versatile"
+    },
+    {
+      "timestamp": "2026-03-08T09:53:29.177020",
+      "dispute_label": "Pre-emption and co-sharer disputes",
+      "mode": "rag",
+      "latency_ms": 1718.61,
+      "prompt_tokens": 1210,
+      "completion_tokens": 353,
+      "total_tokens": 1563,
+      "status": "ok",
+      "model": "llama-3.3-70b-versatile"
+    },
+    {
+      "timestamp": "2026-03-08T09:54:02.881371",
+      "dispute_label": "Sale and transfer of immovable property",
+      "mode": "rag",
+      "latency_ms": 1923.32,
+      "prompt_tokens": 1248,
+      "completion_tokens": 326,
+      "total_tokens": 1574,
+      "status": "ok",
+      "model": "llama-3.3-70b-versatile"
+    },
+    {
+      "timestamp": "2026-03-08T12:06:36.077697",
+      "dispute_label": "Pre-emption and co-sharer disputes",
+      "mode": "rag",
+      "latency_ms": 1742.93,
+      "prompt_tokens": 1210,
+      "completion_tokens": 329,
+      "total_tokens": 1539,
+      "status": "ok",
+      "model": "llama-3.3-70b-versatile"
+    },
+    {
+      "timestamp": "2026-03-08T12:09:04.377617",
+      "dispute_label": "Pre-emption and co-sharer disputes",
+      "mode": "rag",
+      "latency_ms": 4182.78,
+      "prompt_tokens": 1312,
+      "completion_tokens": 260,
+      "total_tokens": 1572,
+      "status": "ok",
+      "model": "llama-3.3-70b-versatile"
+    },
+    {
+      "timestamp": "2026-03-08T12:12:00.669591",
+      "dispute_label": "Sale and transfer of immovable property",
+      "mode": "rag",
+      "latency_ms": 3229.77,
+      "prompt_tokens": 1350,
+      "completion_tokens": 270,
+      "total_tokens": 1620,
+      "status": "ok",
+      "model": "llama-3.3-70b-versatile"
+    },
+    {
+      "timestamp": "2026-03-08T12:12:23.005382",
+      "dispute_label": "Sale and transfer of immovable property",
+      "mode": "rag",
+      "latency_ms": 1759.8,
+      "prompt_tokens": 1350,
+      "completion_tokens": 247,
+      "total_tokens": 1597,
+      "status": "ok",
+      "model": "llama-3.3-70b-versatile"
+    }
+  ],
+  "login_events": [
+    {
+      "timestamp": "2026-03-07T20:55:24.862302",
+      "user_id": "admin",
+      "role": "admin"
+    },
+    {
+      "timestamp": "2026-03-07T20:55:39.866323",
+      "user_id": "raiyan",
+      "role": "user"
+    },
+    {
+      "timestamp": "2026-03-07T20:58:46.562148",
+      "user_id": "admin",
+      "role": "admin"
+    },
+    {
+      "timestamp": "2026-03-08T09:30:10.780019",
+      "user_id": "raiyan",
+      "role": "user"
+    },
+    {
+      "timestamp": "2026-03-08T09:30:40.651811",
+      "user_id": "samia",
+      "role": "user"
+    },
+    {
+      "timestamp": "2026-03-08T09:31:46.291155",
+      "user_id": "admin",
+      "role": "admin"
+    },
+    {
+      "timestamp": "2026-03-08T09:41:56.457655",
+      "user_id": "raiyan",
+      "role": "user"
+    },
+    {
+      "timestamp": "2026-03-08T09:42:32.140340",
+      "user_id": "a",
+      "role": "user"
+    },
+    {
+      "timestamp": "2026-03-08T09:52:55.369921",
+      "user_id": "as",
+      "role": "user"
+    },
+    {
+      "timestamp": "2026-03-08T12:11:45.978427",
+      "user_id": "raiyan",
+      "role": "user"
+    }
+  ],
+  "token_totals": {
+    "prompt_tokens": 14976,
+    "completion_tokens": 3676,
+    "total_tokens": 18652
+  },
+  "model_usage": {
+    "llama-3.3-70b-versatile": 14
+  },
+  "mode_usage": {
+    "rag": 12,
+    "llm_fallback": 2
+  },
+  "dispute_usage": {
+    "Pre-emption and co-sharer disputes": 6,
+    "Land acquisition, requisition, and compensation": 1,
+    "Sale and transfer of immovable property": 4
+  },
+  "latency_ms": [
+    2043.94,
+    1208.29,
+    477.71,
+    2481.06,
+    1212.12,
+    2634.25,
+    1797.44,
+    2582.91,
+    1718.61,
+    1923.32,
+    1742.93,
+    4182.78,
+    3229.77,
+    1759.8
+  ],
+  "updated_at": "2026-03-08T12:12:23.005382"
+}

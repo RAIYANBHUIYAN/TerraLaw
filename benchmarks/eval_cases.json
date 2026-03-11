@@ -1,0 +1,38 @@
+[
+  {
+    "id": "tpa_sale_definition",
+    "question": "What is sale under the Transfer of Property Act?",
+    "expected_act": "Transfer of Property Act",
+    "expected_section": "54",
+    "expected_mode": "rag",
+    "required_terms": ["sale", "transfer of ownership", "price"],
+    "domain": "sale_transfer"
+  },
+  {
+    "id": "sat_preemption",
+    "question": "Which section of the State Acquisition and Tenancy Act deals with pre-emption?",
+    "expected_act": "State Acquisition and Tenancy Act",
+    "expected_section": "96",
+    "expected_mode": "rag",
+    "required_terms": ["pre-emption", "co-sharer"],
+    "domain": "preemption"
+  },
+  {
+    "id": "aripa_objection",
+    "question": "What does the Acquisition and Requisition law say about objections to acquisition?",
+    "expected_act": "Acquisition and Requisition of Immovable Property Act",
+    "expected_section": "4",
+    "expected_mode": "rag",
+    "required_terms": ["object", "15 days", "deputy commissioner"],
+    "domain": "land_acquisition"
+  },
+  {
+    "id": "ldt_levy",
+    "question": "What does the land development tax law say about levy of tax?",
+    "expected_act": "Land Development Tax Act",
+    "expected_section": "3",
+    "expected_mode": "rag",
+    "required_terms": ["land development tax", "levied", "rate"],
+    "domain": "land_tax"
+  }
+]

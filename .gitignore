@@ -1,0 +1,5 @@
+/API.txt
+.env
+__pycache__/
+vectorstore/
+*.pkl

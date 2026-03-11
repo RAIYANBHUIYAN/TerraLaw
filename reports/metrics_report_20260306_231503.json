@@ -1,0 +1,259 @@
+{
+  "generated_at": "2026-03-06T23:15:03.804945",
+  "api_url": "http://127.0.0.1:8000/ask",
+  "cases_file": "benchmarks\\eval_cases.json",
+  "summary": {
+    "cases": 4,
+    "retrieval_precision": 1,
+    "section_accuracy": 0.75,
+    "citation_rate": 1,
+    "grounded_response_rate": 1,
+    "vector_context_rate": 1,
+    "mode_match_rate": 1,
+    "safety_notice_rate": 1,
+    "dispute_label_rate": 1,
+    "required_term_coverage": 0.875,
+    "hallucination_rate": 0.25
+  },
+  "results": [
+    {
+      "id": "tpa_sale_definition",
+      "question": "What is sale under the Transfer of Property Act?",
+      "domain": "sale_transfer",
+      "mode": "rag",
+      "retrieval_hit": true,
+      "section_hit": true,
+      "citation_present": true,
+      "grounded_mode": true,
+      "vector_context_used": true,
+      "expected_mode_match": true,
+      "safety_notice_present": true,
+      "dispute_label_present": true,
+      "required_term_coverage": 1,
+      "hallucination_flag": false,
+      "required_term_hits": {
+        "sale": true,
+        "transfer of ownership": true,
+        "price": true
+      },
+      "sources_used": [
+        {
+          "source": "TPA_1882_cleaned.txt",
+          "act_name": "Transfer of Property Act",
+          "act_year": "1882",
+          "section": "54",
+          "section_title": "",
+          "chapter": "CHAPTER III OF SALES OF IMMOVEABLE PROPERTY \"Sale\" defined",
+          "score": 0.7671
+        },
+        {
+          "source": "TPA_1882_cleaned.txt",
+          "act_name": "Transfer of Property Act",
+          "act_year": "1882",
+          "section": "5",
+          "section_title": "",
+          "chapter": "CHAPTER II OF TRANSFERS OF PROPERTY BY ACT OF PARTIES (A) Transfer of Property, whether moveable or immoveable \"Transfer of property\" defined",
+          "score": 0.7333
+        },
+        {
+          "source": "TPA_1882_cleaned.txt",
+          "act_name": "Transfer of Property Act",
+          "act_year": "1882",
+          "section": "55",
+          "section_title": "",
+          "chapter": "CHAPTER III OF SALES OF IMMOVEABLE PROPERTY \"Sale\" defined",
+          "score": 0.7291
+        },
+        {
+          "source": "TPA_1882_cleaned.txt",
+          "act_name": "Transfer of Property Act",
+          "act_year": "1882",
+          "section": "54",
+          "section_title": "",
+          "chapter": "CHAPTER III OF SALES OF IMMOVEABLE PROPERTY \"Sale\" defined",
+          "score": 0.6936
+        }
+      ],
+      "answer_preview": "Issue: Definition of Sale under the Transfer of Property Act\nShort Answer: Sale is a transfer of ownership in exchange for a price paid or promised or part-paid and part-promised.\nApplicable Law: Transfer of Property Act (section 54)\nProcedure:\n1. The seller and buyer agree on the terms of the sale.\n2. A registered instrument is required for the transfer of tangible immoveable property.\n3. Delivery of the property takes place when the seller places the buyer in possession of the property.\nDocume"
+    },
+    {
+      "id": "sat_preemption",
+      "question": "Which section of the State Acquisition and Tenancy Act deals with pre-emption?",
+      "domain": "preemption",
+      "mode": "rag",
+      "retrieval_hit": true,
+      "section_hit": false,
+      "citation_present": true,
+      "grounded_mode": true,
+      "vector_context_used": true,
+      "expected_mode_match": true,
+      "safety_notice_present": true,
+      "dispute_label_present": true,
+      "required_term_coverage": 0.5,
+      "hallucination_flag": true,
+      "required_term_hits": {
+        "pre-emption": true,
+        "co-sharer": false
+      },
+      "sources_used": [
+        {
+          "source": "SAT_1950_cleaned.txt",
+          "act_name": "State Acquisition and Tenancy Act",
+          "act_year": "1950",
+          "section": "90",
+          "section_title": "",
+          "chapter": "CHAPTER XIII INCIDENTS OF HOLDINGS OF RAIYATS, AND TRANSFER, PURCHASE AND ACQUISITION OF LANDS Rights of raiyat",
+          "score": 0.7726
+        },
+        {
+          "source": "SAT_1950_cleaned.txt",
+          "act_name": "State Acquisition and Tenancy Act",
+          "act_year": "1950",
+          "section": "32",
+          "section_title": "",
+          "chapter": "CHAPTER IV PREPARATION OF RECORD-OF-RIGHTS",
+          "score": 0.7354
+        },
+        {
+          "source": "SAT_1950_cleaned.txt",
+          "act_name": "State Acquisition and Tenancy Act",
+          "act_year": "1950",
+          "section": "152",
+          "section_title": "",
+          "chapter": "CHAPTER XIX RULES",
+          "score": 0.7248
+        },
+        {
+          "source": "SAT_1950_cleaned.txt",
+          "act_name": "State Acquisition and Tenancy Act",
+          "act_year": "1950",
+          "section": "144B",
+          "section_title": "",
+          "chapter": "CHAPTER XVII MAINTENANCE AND REVISION OF THE RECORD-OF-RIGHTS",
+          "score": 0.724
+        }
+      ],
+      "answer_preview": "Issue: Identifying the section of the State Acquisition and Tenancy Act related to pre-emption.\nShort Answer: The specific section dealing with pre-emption is not directly mentioned in the provided context, but section 90 is related to incidents of holdings of raiyats, including transfer, purchase, and acquisition of lands, which might be relevant to pre-emption rights.\nApplicable Law: State Acquisition and Tenancy Act, 1950.\nProcedure:\n1. Review the sections of the State Acquisition and Tenancy"
+    },
+    {
+      "id": "aripa_objection",
+      "question": "What does the Acquisition and Requisition law say about objections to acquisition?",
+      "domain": "land_acquisition",
+      "mode": "rag",
+      "retrieval_hit": true,
+      "section_hit": true,
+      "citation_present": true,
+      "grounded_mode": true,
+      "vector_context_used": true,
+      "expected_mode_match": true,
+      "safety_notice_present": true,
+      "dispute_label_present": true,
+      "required_term_coverage": 1,
+      "hallucination_flag": false,
+      "required_term_hits": {
+        "object": true,
+        "15 days": true,
+        "deputy commissioner": true
+      },
+      "sources_used": [
+        {
+          "source": "ARIPA_2017_cleaned.txt",
+          "act_name": "Acquisition and Requisition of Immovable Property Act",
+          "act_year": "2017",
+          "section": "4",
+          "section_title": "",
+          "chapter": "",
+          "score": 0.7579
+        },
+        {
+          "source": "ARIPA_2017_cleaned.txt",
+          "act_name": "Acquisition and Requisition of Immovable Property Act",
+          "act_year": "2017",
+          "section": "48",
+          "section_title": "",
+          "chapter": "",
+          "score": 0.7496
+        },
+        {
+          "source": "ARIPA_2017_cleaned.txt",
+          "act_name": "Acquisition and Requisition of Immovable Property Act",
+          "act_year": "2017",
+          "section": "30",
+          "section_title": "",
+          "chapter": "",
+          "score": 0.7098
+        },
+        {
+          "source": "ARIPA_2017_cleaned.txt",
+          "act_name": "Acquisition and Requisition of Immovable Property Act",
+          "act_year": "2017",
+          "section": "24",
+          "section_title": "",
+          "chapter": "",
+          "score": 0.7044
+        }
+      ],
+      "answer_preview": "Issue: Objections to land acquisition under the Acquisition and Requisition of Immovable Property Act\nShort Answer: The law allows any person interested in the property to object to the acquisition within 15 days of the publication of the notice, and the objection must be made in writing to the Deputy Commissioner.\nApplicable Law: Acquisition and Requisition of Immovable Property Act\nProcedure:\n1. The person interested in the property must object in writing to the Deputy Commissioner within 15 d"
+    },
+    {
+      "id": "ldt_levy",
+      "question": "What does the land development tax law say about levy of tax?",
+      "domain": "land_tax",
+      "mode": "rag",
+      "retrieval_hit": true,
+      "section_hit": true,
+      "citation_present": true,
+      "grounded_mode": true,
+      "vector_context_used": true,
+      "expected_mode_match": true,
+      "safety_notice_present": true,
+      "dispute_label_present": true,
+      "required_term_coverage": 1,
+      "hallucination_flag": false,
+      "required_term_hits": {
+        "land development tax": true,
+        "levied": true,
+        "rate": true
+      },
+      "sources_used": [
+        {
+          "source": "Land_Tax_2023_cleaned.txt",
+          "act_name": "Land Development Tax Act",
+          "act_year": "2023",
+          "section": "3",
+          "section_title": "",
+          "chapter": "",
+          "score": 0.7868
+        },
+        {
+          "source": "Land_Tax_2023_cleaned.txt",
+          "act_name": "Land Development Tax Act",
+          "act_year": "2023",
+          "section": "3",
+          "section_title": "",
+          "chapter": "",
+          "score": 0.7856
+        },
+        {
+          "source": "Land_Tax_2023_cleaned.txt",
+          "act_name": "Land Development Tax Act",
+          "act_year": "2023",
+          "section": "3",
+          "section_title": "",
+          "chapter": "",
+          "score": 0.7074
+        },
+        {
+          "source": "Land_Tax_2023_cleaned.txt",
+          "act_name": "Land Development Tax Act",
+          "act_year": "2023",
+          "section": "3",
+          "section_title": "",
+          "chapter": "",
+          "score": 0.6817
+        }
+      ],
+      "answer_preview": "Issue: Levy of land development tax\nShort Answer: The land development tax is levied and collected on all lands, with rates specified based on the description of land, and it shall be assessed by the Revenue Officer in a prescribed manner.\nApplicable Law: Land Development Tax Act\nProcedure:\n1. Identification of land type\n2. Determination of tax rate\n3. Assessment by Revenue Officer\nDocuments:\n* Land ownership documents\n* Land classification records\n* Tax payment records\nCitation: Land Developmen"
+    }
+  ]
+}

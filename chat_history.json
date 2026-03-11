@@ -1,0 +1,198 @@
+{
+  "users": {
+    "legacy": [
+      {
+        "id": "cf926fce-8090-4349-a6c2-022f9f663e10",
+        "title": "The government published a notice saying...",
+        "created_at": "2026-03-07T20:11:02.883289",
+        "updated_at": "2026-03-07T20:11:31.540795",
+        "messages": [
+          {
+            "sender": "user",
+            "text": "The government published a notice saying our land may be acquired for a public purpose. How can we object, within how many days, and before which authority?",
+            "created_at": "2026-03-07T20:11:30.330519"
+          },
+          {
+            "sender": "assistant",
+            "text": "Issue: Objecting to land acquisition for public purpose\nShort Answer: You can object to the land acquisition within 15 days after the publication of the notice, in writing, to the Deputy Commissioner.\nApplicable Law: Acquisition and Requisition of Immovable Property Act\nProcedure:\n1. Wait for the notice to be published under section 3.\n2. Object to the acquisition in writing within 15 days.\n3. Submit the objection to the Deputy Commissioner.\nDocuments:\n* Written objection\n* Copy of the published notice\nCitation: Acquisition and Requisition of Immovable Property Act, section 4(1)\nSafety Notice: This response is for informational purposes only and is not a substitute for a licensed legal professional. Please consult a qualified lawyer for specific advice on your situation.",
+            "created_at": "2026-03-07T20:11:31.540788"
+          }
+        ]
+      },
+      {
+        "id": "82d0c4f9-980b-4d84-b177-d21af4038093",
+        "title": "My father sold part of our family land t...",
+        "created_at": "2026-03-07T20:06:11.138252",
+        "updated_at": "2026-03-07T20:06:44.010235",
+        "messages": [
+          {
+            "sender": "user",
+            "text": "My father sold part of our family land to an outsider without informing the other co-sharers. Can I claim pre-emption, and what documents would I need?",
+            "created_at": "2026-03-07T20:06:42.184789"
+          },
+          {
+            "sender": "assistant",
+            "text": "Issue: Claiming pre-emption for family land sold to an outsider without informing co-sharers.\nShort Answer: Yes, you can claim pre-emption as a co-sharer under the State Acquisition and Tenancy Act, given that the sale was made without your knowledge and you are a co-sharer tenant by inheritance.\nApplicable Law: State Acquisition and Tenancy Act, specifically section 96, and relevant provisions of the Transfer of Property Act.\nProcedure:\n1. Verify the sale and gather information about the transaction.\n2. Check if the sale was made with the required permissions and notifications.\n3. Apply to the Court for pre-emption within two months of gaining knowledge of the sale.\nDocuments:\n* Proof of co-sharer status\n* Evidence of the sale (deed, agreement, etc.)\n* Notice of application for pre-emption\nCitation: State Acquisition and Tenancy Act (section 96)\nSafety Notice: This response is informational and not a substitute for a licensed legal professional. For accurate advice and representation, consult a qualified lawyer experienced in Bangladeshi land law.\n\nDetected dispute type: Pre-emption and co-sharer disputes\nClassification confidence: 0.89\nApplicable acts:\n- State Acquisition and Tenancy Act\n- Transfer of Property Act\nDocuments to check:\n- Sale deed\n- Khatiyan / co-sharer record\n- Mutation papers\n- Notice or knowledge of transfer evidence\nSafety notice: This response is for legal awareness only. It does not replace a licensed advocate, title verification, or official land-record checking.\nRetrieved sources:\n- State Acquisition and Tenancy Act | section 131 | score 0.7019\n- State Acquisition and Tenancy Act | section 95 | score 0.6445\n- Transfer of Property Act | section 44 | score 0.6123\n- State Acquisition and Tenancy Act | section 3A | score 0.586",
+            "created_at": "2026-03-07T20:06:44.010221"
+          }
+        ]
+      }
+    ],
+    "raiyan": [
+      {
+        "id": "d80c28b8-0f33-4030-bbac-878c63c624bb",
+        "title": "The government published a notice saying...",
+        "created_at": "2026-03-07T20:39:59.415502",
+        "updated_at": "2026-03-08T12:12:23.041570",
+        "messages": [
+          {
+            "sender": "user",
+            "text": "The government published a notice saying our land may be acquired for a public purpose. How can we object, within how many days, and before which authority?",
+            "created_at": "2026-03-07T20:40:03.502970"
+          },
+          {
+            "sender": "assistant",
+            "text": "Issue: Objecting to land acquisition for public purpose\nShort Answer: You can object to the acquisition within 15 days of the notice publication, and the objection should be made in writing to the Deputy Commissioner.\nApplicable Law: Acquisition and Requisition of Immovable Property Act, section 4\nProcedure:\n1. Review the notice published by the government regarding the land acquisition.\n2. Prepare a written objection stating your concerns and reasons against the acquisition.\n3. Submit the objection to the Deputy Commissioner within 15 days of the notice publication.\nSuggested Next Steps: Gather all relevant documents related to the land, such as ownership deeds and property tax records, to support your objection. Consider consulting a land acquisition or administrative lawyer for guidance.\nSuggested Forum / Authority: You may first approach the Deputy Commissioner or the acquisition authority handling the notice and objection stage.\nSuggested Lawyer Type: A land acquisition or administrative lawyer would be suitable for guiding you through the objection process.\nDocuments:\n* Copy of the notice published by the government\n* Ownership deeds and property tax records\n* Written objection submitted to the Deputy Commissioner\nCitation: Acquisition and Requisition of Immovable Property Act, section 4\nSafety Notice: This response is informational and not a substitute for a licensed legal professional. It is recommended that you consult a qualified lawyer for specific advice on your situation.",
+            "created_at": "2026-03-07T20:40:04.901643"
+          },
+          {
+            "sender": "user",
+            "text": "jhl",
+            "created_at": "2026-03-07T20:51:53.191646"
+          },
+          {
+            "sender": "assistant",
+            "text": "It seems like you've entered a short sequence of characters (\"jhl\"). Could you please provide more context or information about what you're looking for? I'll do my best to help. Are you thinking of a word, a name, or something else?",
+            "created_at": "2026-03-07T20:51:54.441115"
+          },
+          {
+            "sender": "user",
+            "text": "lklk;",
+            "created_at": "2026-03-07T20:52:03.977099"
+          },
+          {
+            "sender": "assistant",
+            "text": "It seems like you may have accidentally typed some random characters. Is there something I can help you with or would you like to start a conversation?",
+            "created_at": "2026-03-07T20:52:04.531738"
+          },
+          {
+            "sender": "user",
+            "text": "I signed an agreement to sell land, but the seller is delaying final registration. What remedies are usually available?",
+            "created_at": "2026-03-08T12:11:57.275468"
+          },
+          {
+            "sender": "assistant",
+            "text": "If the seller is delaying the final registration of the land sale, you have a few options to consider. According to the Transfer of Property Act, specifically section 54A, a contract for sale of immovable property should be registered under the Registration Act, 1908. Since you've already signed an agreement to sell, you can try to persuade the seller to complete the registration process. If they're unwilling, you may be able to seek a charge on the property for the purchase money you've already paid, as mentioned in section 55 of the Transfer of Property Act.\n\nYou could consider taking the matter to a civil court or a land-related civil forum, where you can file a suit to compel the seller to complete the registration or to obtain a decree for rescission of the contract. It's also a good idea to check the land office records and the Sub-Registrar office for deed and registration records to see if there are any issues with the property's title or if the seller has any other obligations that might be causing the delay. You may want to consult with a civil lawyer experienced in property, title, and land transfer matters to guide you through the process.\n\nRemember, this is just general information and not a substitute for professional legal advice. It's always best to consult with a licensed legal professional for specific guidance on your situation.",
+            "created_at": "2026-03-08T12:12:00.699384"
+          },
+          {
+            "sender": "user",
+            "text": "I signed an agreement to sell land, but the seller is delaying final registration. What remedies are usually available?",
+            "created_at": "2026-03-08T12:12:21.106634"
+          },
+          {
+            "sender": "assistant",
+            "text": "If the seller is delaying the final registration of the land sale, you have a few options to consider. First, you can try to negotiate with the seller to complete the registration process as agreed upon in the contract. If that doesn't work, you may be able to take legal action to enforce the contract. According to the Transfer of Property Act, specifically section 54A, a contract for sale of immovable property must be in writing and registered under the Registration Act, 1908. \n\nYou may want to consult with a civil lawyer who is experienced in property and land transfer matters to discuss your specific situation and the best course of action. They can help you understand your rights and liabilities as a buyer, as outlined in the Transfer of Property Act, and guide you through the process of seeking a remedy. You may need to provide documents such as the signed agreement, proof of payment, and any other relevant records to support your case. Your lawyer can help you determine the next steps, which may involve filing a suit in a civil court or seeking assistance from the Sub-Registrar office or local land office.\n\nSafety note: This response is for informational purposes only and is not a substitute for advice from a licensed legal professional.",
+            "created_at": "2026-03-08T12:12:23.041552"
+          }
+        ]
+      },
+      {
+        "id": "323c3e3d-4a78-4ad9-98f6-9e7240229e9e",
+        "title": "My father sold part of our family land t...",
+        "created_at": "2026-03-07T20:18:17.400902",
+        "updated_at": "2026-03-07T20:26:31.935211",
+        "messages": [
+          {
+            "sender": "user",
+            "text": "My father sold part of our family land to an outsider without informing the other co-sharers. Can I claim pre-emption, and what documents would I need?",
+            "created_at": "2026-03-07T20:26:30.295720"
+          },
+          {
+            "sender": "assistant",
+            "text": "Issue: Claiming pre-emption for family land sold to an outsider without informing co-sharers.\nShort Answer: Yes, you can claim pre-emption as a co-sharer under the State Acquisition and Tenancy Act.\nApplicable Law: State Acquisition and Tenancy Act, Transfer of Property Act\nProcedure:\n1. Review the terms of the sale to determine if notice was served under section 89 of the State Acquisition and Tenancy Act.\n2. Check if the sale was made without the previous permission of the Revenue-officer, as required under section 131 of the State Acquisition and Tenancy Act.\n3. Apply to the Court for pre-emption within two months of the service of the notice or knowledge of the sale, as per section 96 of the State Acquisition and Tenancy Act.\nDocuments:\n* Proof of co-sharer status\n* Copy of the sale deed\n* Notice served under section 89 (if applicable)\nCitation: State Acquisition and Tenancy Act (sections 95, 96, 131)\nSafety Notice: This response is for informational purposes only and is not a substitute for a licensed legal professional. Consult a qualified lawyer for specific advice on your situation, as the application of the law can vary depending on individual circumstances.",
+            "created_at": "2026-03-07T20:26:31.935202"
+          }
+        ]
+      }
+    ],
+    "loreen": [
+      {
+        "id": "5c2fa456-efd1-40f9-923e-fb944f86d94c",
+        "title": "New chat",
+        "created_at": "2026-03-07T20:21:53.447940",
+        "updated_at": "2026-03-07T20:21:53.447947",
+        "messages": []
+      }
+    ],
+    "samia": [
+      {
+        "id": "3aa529de-d110-43e4-8121-9f3c394d4db8",
+        "title": "My father sold part of our family land t...",
+        "created_at": "2026-03-08T09:30:40.655677",
+        "updated_at": "2026-03-08T09:31:13.069968",
+        "messages": [
+          {
+            "sender": "user",
+            "text": "My father sold part of our family land to an outsider without informing the other co-sharers. Can I claim pre-emption, and what documents would I need?",
+            "created_at": "2026-03-08T09:31:11.220124"
+          },
+          {
+            "sender": "assistant",
+            "text": "Issue: Pre-emption claim for family land sold to an outsider without informing co-sharers.\nShort Answer: Yes, you may be able to claim pre-emption under the State Acquisition and Tenancy Act, given that the sale was made without informing the co-sharers.\nApplicable Law: State Acquisition and Tenancy Act (section 96), Transfer of Property Act (section 44).\nProcedure:\n1. Collect documents related to the sale, including the sale deed.\n2. Gather co-sharer records and mutation documents from the Sub-Registrar office and land records office.\n3. Apply to the Court for pre-emption within two months of knowledge of the sale.\nSuggested Next Steps: Review the sale deed and co-sharer records, and consider consulting with a lawyer to assess the validity of the sale and potential pre-emption claim.\nSuggested Forum / Authority: You may first approach a civil court or the statutory forum dealing with pre-emption claims.\nSuggested Lawyer Type: A civil lawyer experienced in land, co-sharer, and pre-emption litigation.\nDocuments:\n* Sale deed\n* Co-sharer records\n* Mutation documents\n* Land records\nCitation: State Acquisition and Tenancy Act (section 96), Transfer of Property Act (section 44).\nSafety Notice: This response is informational and not a substitute for a licensed legal professional. It is recommended that you consult with a qualified lawyer to receive personalized advice and guidance on your specific situation.",
+            "created_at": "2026-03-08T09:31:13.069956"
+          }
+        ]
+      }
+    ],
+    "a": [
+      {
+        "id": "c7212608-540a-43a2-90c7-68375587d4c2",
+        "title": "New chat",
+        "created_at": "2026-03-08T09:42:32.144471",
+        "updated_at": "2026-03-08T09:42:32.144480",
+        "messages": []
+      }
+    ],
+    "as": [
+      {
+        "id": "c16a20ce-d1d7-48db-8c84-5301d25651f6",
+        "title": "My father sold part of our family land t...",
+        "created_at": "2026-03-08T09:52:55.372715",
+        "updated_at": "2026-03-08T09:54:02.895810",
+        "messages": [
+          {
+            "sender": "user",
+            "text": "My father sold part of our family land to an outsider without informing the other co-sharers. Can I claim pre-emption, and what documents would I need?",
+            "created_at": "2026-03-08T09:53:11.614787"
+          },
+          {
+            "sender": "assistant",
+            "text": "Issue:\nThe user's father sold part of their family land to an outsider without informing the other co-sharers, and the user wants to know if they can claim pre-emption.\n\nShort Answer:\nThe user may be able to claim pre-emption under Section 96 of the State Acquisition and Tenancy Act, which provides the right of pre-emption to co-sharer tenants.\n\nApplicable Law:\nState Acquisition and Tenancy Act (Section 96), Transfer of Property Act.\n\nProcedure:\n1. Collect the sale deed and mutation records from the Sub-Registrar office.\n2. Gather co-sharer records from the land records office.\n3. Apply to the Court for pre-emption within two months of the service of the notice or knowledge of the sale.\n\nSuggested Next Steps:\nIt would be practical to consult with a lawyer to review the sale deed and co-sharer records, and to discuss the possibility of filing a pre-emption claim. The user should also try to gather evidence of their co-sharer status and the lack of notice from the seller.\n\nSuggested Forum / Authority:\nThe user may first go to a civil court or the statutory forum dealing with pre-emption claims, depending on the governing provision.\n\nSuggested Lawyer Type:\nA civil lawyer experienced in land, co-sharer, and pre-emption litigation would be suitable for this case.\n\nDocuments:\n* Sale deed\n* Mutation records\n* Co-sharer records\n* Notice of sale (if served)\n\nCitation:\nState Acquisition and Tenancy Act (Section 96), Transfer of Property Act (Section 44)\n\nSafety Notice:\nThis response is informational and not a substitute for a licensed legal professional. The user should consult with a qualified lawyer to get specific advice on their situation and to ensure that their rights are protected.",
+            "created_at": "2026-03-08T09:53:14.250768"
+          },
+          {
+            "sender": "user",
+            "text": "My father sold part of our family land to an outsider without informing the other co-sharers. Can I claim pre-emption, and what documents would I need?",
+            "created_at": "2026-03-08T09:53:27.412101"
+          },
+          {
+            "sender": "assistant",
+            "text": "Issue: Pre-emption claim for family land sold to an outsider without informing co-sharers.\n\nShort Answer: You may be able to claim pre-emption under the State Acquisition and Tenancy Act, specifically section 96, if you are a co-sharer tenant in the holding and the sale was made without your knowledge or consent.\n\nApplicable Law: State Acquisition and Tenancy Act (section 96), Transfer of Property Act (section 44).\n\nProcedure:\n1. Collect the sale deed and mutation records from the Sub-Registrar office.\n2. Gather co-sharer records from the land records office.\n3. Apply to the Court for pre-emption within two months of the service of the notice or date of knowledge of the sale.\n\nSuggested Next Steps: Review the sale deed and mutation records to understand the terms of the sale, and consult with the other co-sharers to determine if they are also interested in claiming pre-emption.\n\nSuggested Forum / Authority: You may want to start by filing a claim with the civil court or the statutory forum dealing with pre-emption claims, depending on the governing provision.\n\nSuggested Lawyer Type: A civil lawyer experienced in land, co-sharer, and pre-emption litigation would be a good fit for this case.\n\nDocuments:\n* Sale deed\n* Mutation records\n* Co-sharer records\n* Notice of sale (if served)\n\nCitation: State Acquisition and Tenancy Act (section 96), Transfer of Property Act (section 44).\n\nSafety Notice: This response is for informational purposes only and is not a substitute for the advice of a licensed legal professional. It is recommended that you consult with a qualified lawyer to discuss your specific situation and determine the best course of action.",
+            "created_at": "2026-03-08T09:53:29.195408"
+          },
+          {
+            "sender": "user",
+            "text": "I signed an agreement to sell land, but the seller is delaying final registration. What remedies are usually available?",
+            "created_at": "2026-03-08T09:54:00.913902"
+          },
+          {
+            "sender": "assistant",
+            "text": "Issue: Delay in registration of land sale by the seller\nShort Answer: The buyer can seek specific performance of the contract or rescission of the contract, and may be entitled to a charge on the property for the amount of purchase-money paid.\nApplicable Law: Transfer of Property Act (sections 54, 54A, 55)\nProcedure:\n1. Review the agreement for sale to check the mentioned time for execution and registration.\n2. Send a notice to the seller to complete the registration within the specified time.\n3. If the seller fails to comply, consider filing a suit for specific performance or rescission of the contract.\nSuggested Next Steps: The buyer may consider consulting a lawyer to assess the situation and advise on the best course of action. It is also recommended to check the land records at the Sub-Registrar office and local land office to verify the ownership and any encumbrances on the property.\nSuggested Forum / Authority: The buyer may approach a civil court or a land-related civil forum, and simultaneously check the land records at the Sub-Registrar office and local land office.\nSuggested Lawyer Type: A civil lawyer experienced in property, title, and land transfer matters.\nDocuments:\n* Agreement for sale\n* Receipts of payment made\n* Title deeds of the property\n* Notice sent to the seller\nCitation: Transfer of Property Act (sections 54, 54A, 55)\nSafety Notice: This response is for informational purposes only and is not a substitute for a licensed legal professional. It is recommended to consult a qualified lawyer for specific advice on the matter.",
+            "created_at": "2026-03-08T09:54:02.895792"
+          }
+        ]
+      }
+    ]
+  }
+}
