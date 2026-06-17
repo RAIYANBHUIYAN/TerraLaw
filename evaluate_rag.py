@@ -26,6 +26,33 @@ def normalize_text(text: str) -> str:
     return " ".join(text.lower().split())
 
 
+def _citation_present(normalized_answer: str, sources: list[dict], expected_section: str) -> bool:
+    act_mentions = [
+        normalize_text(source.get("act_name", ""))
+        for source in sources
+        if source.get("act_name")
+    ]
+    section_mentions = [
+        normalize_text(f"section {source.get('section')}")
+        for source in sources
+        if source.get("section")
+    ]
+
+    return any(act and act in normalized_answer for act in act_mentions) or any(
+        section and section in normalized_answer for section in section_mentions
+    ) or f"section {expected_section}" in normalized_answer
+
+
+def _safety_notice_present(normalized_answer: str) -> bool:
+    expected_phrases = (
+        "informational",
+        "not a substitute",
+        "licensed legal professional",
+        "licensed advocate",
+    )
+    return sum(1 for phrase in expected_phrases if phrase in normalized_answer) >= 2
+
+
 def run_case(api_url: str, case: dict):
     response = requests.get(api_url, params={"question": case["question"]}, timeout=120)
     response.raise_for_status()
@@ -50,13 +77,17 @@ def run_case(api_url: str, case: dict):
         case["expected_section"] in sections
         or f"section {case['expected_section']}" in normalized_answer
     )
-    citation_present = "citation:" in normalized_answer
+    citation_present = _citation_present(normalized_answer, sources, case["expected_section"])
     grounded_mode = payload.get("mode") in GROUND_MODES
     vector_context_used = bool(payload.get("chunks_used"))
     expected_mode_match = payload.get("mode") == case.get("expected_mode")
-    safety_notice_present = "safety notice:" in normalized_answer
+    safety_notice_present = _safety_notice_present(normalized_answer)
     dispute_label_present = bool(analysis.get("label"))
-    required_term_coverage = safe_mean(1 if hit else 0 for hit in required_term_hits.values()) if required_terms else 0.0
+    required_term_coverage = (
+        safe_mean(1 if hit else 0 for hit in required_term_hits.values())
+        if required_terms
+        else 0.0
+    )
 
     hallucination_flag = retrieval_hit and not section_hit and citation_present
 
@@ -97,12 +128,42 @@ def summarize(results):
     }
 
 
-def write_report(output: dict, reports_dir: Path):
-    reports_dir.mkdir(parents=True, exist_ok=True)
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    report_path = reports_dir / f"metrics_report_{timestamp}.json"
+def write_report(output: dict, reports_dir: Path | None = None, report_path: Path | None = None):
+    if report_path is None:
+        if reports_dir is None:
+            reports_dir = DEFAULT_REPORTS_DIR
+        reports_dir.mkdir(parents=True, exist_ok=True)
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        report_path = reports_dir / f"metrics_report_{timestamp}.json"
+    else:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+
     report_path.write_text(json.dumps(output, indent=2), encoding="utf-8")
     return report_path
+
+
+def evaluate_cases(
+    api_url: str = DEFAULT_API_URL,
+    cases_path: Path = DEFAULT_CASES_PATH,
+    reports_dir: Path = DEFAULT_REPORTS_DIR,
+    save_report: bool = True,
+    report_path: Path | None = None,
+):
+    cases = load_cases(cases_path)
+    results = [run_case(api_url, case) for case in cases]
+    output = {
+        "generated_at": datetime.now().isoformat(),
+        "api_url": api_url,
+        "cases_file": str(cases_path),
+        "summary": summarize(results),
+        "results": results,
+    }
+
+    if save_report:
+        saved_path = write_report(output, reports_dir=reports_dir, report_path=report_path)
+        output["report_path"] = str(saved_path)
+
+    return output
 
 
 def parse_args():
@@ -110,28 +171,18 @@ def parse_args():
     parser.add_argument("--api-url", default=DEFAULT_API_URL, help="Ask endpoint URL.")
     parser.add_argument("--cases", default=str(DEFAULT_CASES_PATH), help="Path to benchmark cases JSON.")
     parser.add_argument("--reports-dir", default=str(DEFAULT_REPORTS_DIR), help="Directory for saved reports.")
+    parser.add_argument("--report-path", default=None, help="Optional explicit path for the JSON report.")
     parser.add_argument("--no-save", action="store_true", help="Do not save a JSON report file.")
     return parser.parse_args()
 
 
 if __name__ == "__main__":
     args = parse_args()
-    cases_path = Path(args.cases)
-    reports_dir = Path(args.reports_dir)
-
-    cases = load_cases(cases_path)
-    results = [run_case(args.api_url, case) for case in cases]
-    output = {
-        "generated_at": datetime.now().isoformat(),
-        "api_url": args.api_url,
-        "cases_file": str(cases_path),
-        "summary": summarize(results),
-        "results": results,
-    }
-
-    report_path = None
-    if not args.no_save:
-        report_path = write_report(output, reports_dir)
-        output["report_path"] = str(report_path)
-
+    output = evaluate_cases(
+        api_url=args.api_url,
+        cases_path=Path(args.cases),
+        reports_dir=Path(args.reports_dir),
+        save_report=not args.no_save,
+        report_path=Path(args.report_path) if args.report_path else None,
+    )
     print(json.dumps(output, indent=2))
