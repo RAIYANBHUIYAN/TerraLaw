@@ -1,7 +1,6 @@
 import argparse
 import hashlib
 import json
-import os
 import pickle
 from datetime import datetime
 from pathlib import Path
@@ -9,12 +8,16 @@ from pathlib import Path
 from langchain_community.embeddings import SentenceTransformerEmbeddings
 from langchain_community.vectorstores import InMemoryVectorStore
 
-from terralaw_core import build_documents_from_text
+from model.paths import (
+    DATA_PROCESSED_DIR,
+    DEFAULT_EMBEDDING_MODEL,
+    VECTORSTORE_DIR,
+)
+from model.terralaw_core import build_documents_from_text
 
 
-DEFAULT_PROCESSED_DATA_DIR = Path("Proessed_data")
-DEFAULT_VECTOR_DIR = Path("vectorstore")
-DEFAULT_EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
+DEFAULT_PROCESSED_DATA_DIR = DATA_PROCESSED_DIR
+DEFAULT_VECTOR_DIR = VECTORSTORE_DIR
 
 
 def _file_sha256(path: Path) -> str:

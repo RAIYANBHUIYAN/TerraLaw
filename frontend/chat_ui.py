@@ -1,4 +1,6 @@
 import sys
+from pathlib import Path
+
 import requests
 from PyQt6.QtWidgets import (
     QApplication, QWidget, QVBoxLayout, QHBoxLayout, QLabel,
@@ -7,7 +9,13 @@ from PyQt6.QtWidgets import (
 from PyQt6.QtCore import Qt, QThread, pyqtSignal
 from PyQt6.QtGui import QFont
 
-API_URL = "http://127.0.0.1:8000/ask"
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+from model.paths import DEFAULT_API_ASK_URL
+
+API_URL = DEFAULT_API_ASK_URL
 
 
 # ============================

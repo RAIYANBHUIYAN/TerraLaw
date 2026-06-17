@@ -7,9 +7,15 @@ from statistics import mean
 import requests
 
 
-DEFAULT_API_URL = "http://127.0.0.1:8000/ask"
-DEFAULT_CASES_PATH = Path("benchmarks/eval_cases.json")
-DEFAULT_REPORTS_DIR = Path("reports")
+from model.paths import (
+    BENCHMARKS_DIR,
+    DEFAULT_API_ASK_URL,
+    MODEL_REPORTS_DIR,
+)
+
+DEFAULT_API_URL = DEFAULT_API_ASK_URL
+DEFAULT_CASES_PATH = BENCHMARKS_DIR / "eval_cases.json"
+DEFAULT_REPORTS_DIR = MODEL_REPORTS_DIR
 
 GROUND_MODES = {"rag", "llm_fallback", "llm_only", "no_context"}
 

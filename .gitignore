@@ -1,6 +1,15 @@
 /API.txt
 .env
 __pycache__/
-vectorstore/
+*.pyc
+*.pyo
 *.pkl
-reports/mlops_runs/
+model/vectorstore/*
+!model/vectorstore/.gitkeep
+model/reports/mlops_runs/
+model/reports/metrics_report_*.json
+backend/reports/runtime_dashboard.json
+frontend/data/chat_history.json
+frontend/data/users.json
+*.log
+server*.log

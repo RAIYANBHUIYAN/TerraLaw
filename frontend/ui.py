@@ -1,5 +1,6 @@
 import hashlib
 import json
+import sys
 import threading
 import tkinter as tk
 import uuid
@@ -8,13 +9,22 @@ from datetime import datetime
 from pathlib import Path
 from tkinter import Canvas, Frame
 
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
 import requests
 
-API_URL = "http://127.0.0.1:8000/ask"
+from model.paths import (
+    DEFAULT_API_ASK_URL,
+    FRONTEND_DATA_DIR,
+)
+
+API_URL = DEFAULT_API_ASK_URL
 ADMIN_DASHBOARD_URL = "http://127.0.0.1:8000/admin/dashboard"
 TRACK_LOGIN_URL = "http://127.0.0.1:8000/track-login"
-CHAT_STORE = Path("chat_history.json")
-USERS_STORE = Path("users.json")
+CHAT_STORE = FRONTEND_DATA_DIR / "chat_history.json"
+USERS_STORE = FRONTEND_DATA_DIR / "users.json"
 ADMIN_USER_ID = "admin"
 ADMIN_PASSWORD = "123"
 

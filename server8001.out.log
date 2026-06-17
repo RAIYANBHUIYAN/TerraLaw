@@ -1,2 +1,0 @@
-Error loading vectorstore: module 'transformers.models.bert.modeling_bert' has no attribute 'BertSdpaSelfAttention'
-Rebuilt vectorstore from documents.pkl with 1619 chunks.

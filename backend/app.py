@@ -17,7 +17,8 @@ from langchain_community.embeddings import SentenceTransformerEmbeddings
 from langchain_community.vectorstores import InMemoryVectorStore
 from openai import OpenAI
 
-from terralaw_core import (
+from model.paths import BACKEND_REPORTS_DIR, MODEL_REPORTS_DIR, VECTORSTORE_DIR
+from model.terralaw_core import (
     ACT_CATALOG,
     QuestionAnalysis,
     analyze_question,
@@ -33,7 +34,7 @@ GROQ_MODEL = "llama-3.3-70b-versatile"
 RETRIEVAL_K = 8
 RETRIEVAL_RETURN_K = 4
 MIN_RELEVANCE_SCORE = 0.35
-REPORTS_DIR = Path("reports")
+REPORTS_DIR = BACKEND_REPORTS_DIR
 RUNTIME_DASHBOARD_FILE = REPORTS_DIR / "runtime_dashboard.json"
 
 runtime_metrics: Counter[str] = Counter()
@@ -48,13 +49,13 @@ def _embedding_model():
 
 def _load_vectorstore() -> InMemoryVectorStore | None:
     try:
-        with open("vectorstore/embeddings.pkl", "rb") as f:
+        with open(VECTORSTORE_DIR / "embeddings.pkl", "rb") as f:
             return pickle.load(f)
     except Exception as exc:
         print("Error loading vectorstore:", exc)
 
     try:
-        with open("vectorstore/documents.pkl", "rb") as f:
+        with open(VECTORSTORE_DIR / "documents.pkl", "rb") as f:
             docs = pickle.load(f)
 
         rebuilt_db = InMemoryVectorStore(embedding=_embedding_model())
@@ -242,7 +243,7 @@ def _record_login_event(user_id: str, role: str):
 
 def _latest_benchmark_report():
     reports = sorted(
-        REPORTS_DIR.glob("metrics_report_*.json"),
+        MODEL_REPORTS_DIR.glob("metrics_report_*.json"),
         key=lambda path: path.stat().st_mtime,
         reverse=True,
     )

@@ -11,18 +11,22 @@ from urllib.parse import urlsplit, urlunsplit
 
 import requests
 
-from evaluate_rag import evaluate_cases
-from rag_pipeline import (
+from model.evaluate_rag import evaluate_cases
+from model.paths import (
+    BENCHMARKS_DIR,
+    DEFAULT_API_BASE_URL,
+    MLOPS_RUNS_DIR,
+    PROJECT_ROOT,
+)
+from model.rag_pipeline import (
     DEFAULT_EMBEDDING_MODEL,
     DEFAULT_PROCESSED_DATA_DIR,
     DEFAULT_VECTOR_DIR,
     build_vectorstore,
 )
 
-
-DEFAULT_API_BASE_URL = "http://127.0.0.1:8000"
-DEFAULT_TRACKING_DIR = Path("reports/mlops_runs")
-DEFAULT_CASES_PATH = Path("benchmarks/eval_cases.json")
+DEFAULT_TRACKING_DIR = MLOPS_RUNS_DIR
+DEFAULT_CASES_PATH = BENCHMARKS_DIR / "eval_cases.json"
 
 
 def _run_git_command(*args: str) -> str | None:
@@ -112,13 +116,13 @@ def start_api_server(api_base_url: str, run_dir: Path):
             sys.executable,
             "-m",
             "uvicorn",
-            "app:app",
+            "backend.app:app",
             "--host",
             host,
             "--port",
             str(port),
         ],
-        cwd=Path(__file__).resolve().parent,
+        cwd=PROJECT_ROOT,
         stdout=stdout_handle,
         stderr=stderr_handle,
     )
@@ -157,7 +161,7 @@ def run_pipeline(
         "run_id": run_dir.name,
         "started_at": datetime.now().isoformat(),
         "status": "running",
-        "project_root": str(Path(__file__).resolve().parent),
+        "project_root": str(PROJECT_ROOT),
         "python_version": sys.version,
         "platform": platform.platform(),
         "git": _git_context(),
