@@ -226,10 +226,23 @@ DISPUTE_PLAYBOOK: dict[str, dict[str, Any]] = {
 }
 
 
+CHUNK_SIZE = 1100
+CHUNK_OVERLAP = 150
+MAX_WHOLE_SECTION_CHARS = 1100
+
 CHUNK_SPLITTER = RecursiveCharacterTextSplitter(
-    chunk_size=900,
-    chunk_overlap=120,
-    separators=["\n\n", "\n", "; ", ". ", " "],
+    chunk_size=CHUNK_SIZE,
+    chunk_overlap=CHUNK_OVERLAP,
+    separators=[
+        "\n\n",
+        r"\n\([a-z]+\)\s",
+        r"\n\(\d+\)\s",
+        "\n",
+        "; ",
+        ". ",
+        " ",
+    ],
+    is_separator_regex=True,
 )
 
 
@@ -364,6 +377,42 @@ def parse_legal_sections(text: str) -> list[dict[str, Any]]:
     return sections
 
 
+def _section_context_prefix(act_meta: dict[str, Any], section: dict[str, Any]) -> str:
+    act_label = act_meta.get("act_name", "")
+    if act_meta.get("act_year"):
+        act_label = f"{act_label}, {act_meta['act_year']}"
+
+    details: list[str] = []
+    section_number = section.get("section", "")
+    section_title = section.get("section_title", "")
+    if section_number:
+        section_label = f"Section {section_number}"
+        if section_title:
+            section_label = f"{section_label}: {section_title}"
+        details.append(section_label)
+    elif section_title:
+        details.append(section_title)
+
+    chapter = section.get("chapter", "")
+    if chapter:
+        details.append(chapter)
+
+    if details:
+        return f"{act_label} | {' | '.join(details)}"
+    return act_label
+
+
+def _split_section_content(content: str) -> list[str]:
+    normalized = content.strip()
+    if not normalized:
+        return []
+
+    if len(normalized) <= MAX_WHOLE_SECTION_CHARS:
+        return [normalized]
+
+    return CHUNK_SPLITTER.split_text(normalized)
+
+
 def build_documents_from_text(source_name: str, text: str) -> list[Document]:
     cleaned = clean_legal_text(text)
     act_meta = extract_act_metadata(source_name, cleaned)
@@ -380,8 +429,12 @@ def build_documents_from_text(source_name: str, text: str) -> list[Document]:
         }]
 
     for section_index, section in enumerate(sections):
-        chunks = CHUNK_SPLITTER.split_text(section["content"])
+        context_prefix = _section_context_prefix(act_meta, section)
+        chunks = _split_section_content(section["content"])
+        total_chunks = len(chunks)
+
         for chunk_index, chunk in enumerate(chunks):
+            page_content = f"{context_prefix}\n\n{chunk}" if context_prefix else chunk
             metadata = {
                 **act_meta,
                 "part": section.get("part", ""),
@@ -390,8 +443,9 @@ def build_documents_from_text(source_name: str, text: str) -> list[Document]:
                 "section_title": section.get("section_title", ""),
                 "section_key": f"{section.get('section', '')}:{section_index}",
                 "chunk_index": chunk_index,
+                "chunk_count": total_chunks,
             }
-            documents.append(Document(page_content=chunk, metadata=metadata))
+            documents.append(Document(page_content=page_content, metadata=metadata))
 
     return documents
 
@@ -458,18 +512,49 @@ def summarize_sources(results_with_scores: list[tuple[Document, float]]) -> list
 
 
 def format_source_label(metadata: dict[str, Any]) -> str:
+    return format_legal_citation(metadata)
+
+
+def format_legal_citation(metadata: dict[str, Any]) -> str:
     act_name = metadata.get("act_name") or metadata.get("source", "Unknown source")
+    act_year = metadata.get("act_year", "")
     section = metadata.get("section")
     section_title = metadata.get("section_title")
     chapter = metadata.get("chapter")
-    details = []
+
+    act_label = f"{act_name}, {act_year}" if act_year else act_name
     if section:
-        details.append(f"section {section}")
+        section_label = f"Section {section}"
+        if section_title:
+            section_label = f"{section_label} ({section_title})"
+        elif chapter:
+            section_label = f"{section_label} — {chapter}"
+        return f"{act_label} — {section_label}"
     if section_title:
-        details.append(section_title)
-    elif chapter:
-        details.append(chapter)
-    return f"{act_name} ({'; '.join(details)})" if details else act_name
+        return f"{act_label} — {section_title}"
+    if chapter:
+        return f"{act_label} — {chapter}"
+    return act_label
+
+
+def build_citations_block(sources: list[dict[str, Any]]) -> str:
+    if not sources:
+        return ""
+
+    lines: list[str] = []
+    seen: set[tuple[str, str]] = set()
+    for source in sources:
+        act_name = str(source.get("act_name", ""))
+        section = str(source.get("section", ""))
+        key = (act_name, section)
+        if key in seen:
+            continue
+        seen.add(key)
+        lines.append(f"• {format_legal_citation(source)}")
+
+    if not lines:
+        return ""
+    return "Legal sources cited:\n" + "\n".join(lines)
 
 
 def build_procedural_guidance(analysis: QuestionAnalysis) -> dict[str, Any]:

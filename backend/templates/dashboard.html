@@ -1,0 +1,349 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TerraLaw BD Admin Dashboard</title>
+  <style>
+    :root {
+      --bg: #eef4ef;
+      --panel: #fbfdfb;
+      --line: #d8e1da;
+      --text: #152320;
+      --muted: #697873;
+      --accent: #1f6f5f;
+      --accent-soft: #dff0e8;
+      --warn: #a83d2f;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, #edf5ef 0%, #f8fbf9 100%);
+      color: var(--text);
+    }
+    .wrap {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    .hero, .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(31, 111, 95, 0.06);
+    }
+    .hero {
+      padding: 24px 28px;
+      margin-bottom: 18px;
+    }
+    .hero h1 {
+      margin: 0 0 8px;
+      font-size: 28px;
+    }
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 18px;
+    }
+    .card {
+      padding: 18px;
+      min-height: 120px;
+    }
+    .span-3 { grid-column: span 3; }
+    .span-4 { grid-column: span 4; }
+    .span-5 { grid-column: span 5; }
+    .span-6 { grid-column: span 6; }
+    .span-7 { grid-column: span 7; }
+    .span-8 { grid-column: span 8; }
+    .span-12 { grid-column: span 12; }
+    .eyebrow {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .big {
+      font-size: 34px;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .sub {
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .chart {
+      display: flex;
+      align-items: end;
+      gap: 8px;
+      height: 220px;
+      padding-top: 16px;
+    }
+    .bar-wrap {
+      flex: 1;
+      min-width: 0;
+      text-align: center;
+    }
+    .bar {
+      width: 100%;
+      border-radius: 12px 12px 4px 4px;
+      background: linear-gradient(180deg, #2a8774 0%, #1f6f5f 100%);
+      min-height: 3px;
+    }
+    .bar-label {
+      margin-top: 8px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+    .metric-list {
+      display: grid;
+      gap: 12px;
+    }
+    .metric-row {
+      display: grid;
+      grid-template-columns: 180px 1fr 52px;
+      gap: 12px;
+      align-items: center;
+    }
+    .metric-bar {
+      height: 10px;
+      border-radius: 999px;
+      background: #ebf1ed;
+      overflow: hidden;
+    }
+    .metric-bar > span {
+      display: block;
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #6bc694 0%, #1f6f5f 100%);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    th, td {
+      text-align: left;
+      padding: 10px 8px;
+      border-bottom: 1px solid #e8efea;
+      vertical-align: top;
+    }
+    th {
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .pill {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .warning { color: var(--warn); }
+    @media (max-width: 1080px) {
+      .span-3, .span-4, .span-5, .span-6, .span-7, .span-8 { grid-column: span 12; }
+      .metric-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <h1>TerraLaw BD Admin Dashboard</h1>
+      <p>Live runtime usage, token consumption, traffic load, and latest benchmark metrics.</p>
+    </section>
+    <section class="grid">
+      <div class="panel card span-3"><div class="eyebrow">Total Queries</div><div class="big" id="queries">0</div><div class="sub">Requests processed by the API</div></div>
+      <div class="panel card span-3"><div class="eyebrow">Total Tokens</div><div class="big" id="totalTokens">0</div><div class="sub">Prompt + completion tokens</div></div>
+      <div class="panel card span-3"><div class="eyebrow">Avg Latency</div><div class="big" id="latency">0 ms</div><div class="sub">Average request time</div></div>
+      <div class="panel card span-3"><div class="eyebrow">User Logins</div><div class="big" id="logins">0</div><div class="sub">Successful chat and admin sign-ins</div></div>
+
+      <div class="panel card span-7">
+        <div class="eyebrow">Traffic Load (Last 24 Hours)</div>
+        <div class="chart" id="trafficChart"></div>
+      </div>
+      <div class="panel card span-5">
+        <div class="eyebrow">Token Usage (Last 20 Requests)</div>
+        <div class="chart" id="tokenChart"></div>
+      </div>
+
+      <div class="panel card span-6">
+        <div class="eyebrow">Latest Benchmark Metrics</div>
+        <div class="metric-list" id="benchmarkList"></div>
+      </div>
+      <div class="panel card span-6">
+        <div class="eyebrow">Runtime Distribution</div>
+        <div class="metric-list" id="modeList"></div>
+        <div style="height:16px"></div>
+        <div class="eyebrow">Top Acts Queried</div>
+        <div class="metric-list" id="actList"></div>
+      </div>
+
+      <div class="panel card span-12">
+        <div class="eyebrow">Dispute Type Analytics</div>
+        <div class="sub">Private admin summary of which dispute categories users ask most often</div>
+        <div style="height:16px"></div>
+        <div class="metric-list" id="disputeList"></div>
+      </div>
+
+      <div class="panel card span-12">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:16px">
+          <div>
+            <div class="eyebrow">Recent Requests</div>
+            <div class="sub">Private admin activity log without exposing full user question text</div>
+          </div>
+          <div class="pill" id="updatedAt">Updated just now</div>
+        </div>
+        <div style="overflow:auto; margin-top: 14px;">
+          <table>
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Mode</th>
+                <th>Dispute Type</th>
+                <th>Latency</th>
+                <th>Tokens</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="recentRequests"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="panel card span-12">
+        <div class="eyebrow">Recent Logins</div>
+        <div style="overflow:auto; margin-top: 14px;">
+          <table>
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Role</th>
+                <th>User ID</th>
+              </tr>
+            </thead>
+            <tbody id="recentLogins"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+    function fmt(value) {
+      return new Intl.NumberFormat().format(value || 0);
+    }
+
+    function renderBars(targetId, series) {
+      const target = document.getElementById(targetId);
+      target.innerHTML = "";
+      const max = Math.max(...series.map(item => item.value), 1);
+      series.forEach(item => {
+        const wrap = document.createElement("div");
+        wrap.className = "bar-wrap";
+        const bar = document.createElement("div");
+        bar.className = "bar";
+        bar.style.height = `${Math.max((item.value / max) * 180, item.value ? 8 : 3)}px`;
+        bar.title = `${item.label}: ${item.value}`;
+        const label = document.createElement("div");
+        label.className = "bar-label";
+        label.textContent = item.label;
+        wrap.appendChild(bar);
+        wrap.appendChild(label);
+        target.appendChild(wrap);
+      });
+    }
+
+    function renderMetricList(targetId, items, asPercent) {
+      const target = document.getElementById(targetId);
+      target.innerHTML = "";
+      items.forEach(item => {
+        const row = document.createElement("div");
+        row.className = "metric-row";
+        const label = document.createElement("div");
+        label.textContent = item.label;
+        const barOuter = document.createElement("div");
+        barOuter.className = "metric-bar";
+        const barInner = document.createElement("span");
+        const pct = asPercent ? Math.round((item.value || 0) * 100) : Math.min(item.value || 0, 100);
+        barInner.style.width = `${pct}%`;
+        barOuter.appendChild(barInner);
+        const value = document.createElement("div");
+        value.textContent = asPercent ? `${pct}%` : fmt(item.value);
+        row.appendChild(label);
+        row.appendChild(barOuter);
+        row.appendChild(value);
+        target.appendChild(row);
+      });
+    }
+
+    function renderRecentRequests(rows) {
+      const target = document.getElementById("recentRequests");
+      target.innerHTML = "";
+      rows.slice().reverse().forEach(item => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${new Date(item.timestamp).toLocaleString()}</td>
+          <td><span class="pill">${item.mode}</span></td>
+          <td>${item.dispute_label || "Unknown"}</td>
+          <td>${item.latency_ms} ms</td>
+          <td>${fmt(item.total_tokens)}</td>
+          <td>${item.status}</td>
+        `;
+        target.appendChild(tr);
+      });
+    }
+
+    function renderRecentLogins(rows) {
+      const target = document.getElementById("recentLogins");
+      target.innerHTML = "";
+      rows.slice().reverse().forEach(item => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${new Date(item.timestamp).toLocaleString()}</td>
+          <td><span class="pill">${item.role}</span></td>
+          <td>${item.user_id}</td>
+        `;
+        target.appendChild(tr);
+      });
+    }
+
+    async function boot() {
+      const response = await fetch("/admin/api/dashboard", { cache: "no-store" });
+      const data = await response.json();
+
+      document.getElementById("queries").textContent = fmt(data.overview.queries);
+      document.getElementById("totalTokens").textContent = fmt(data.token_totals.total_tokens);
+      document.getElementById("latency").textContent = `${data.overview.avg_latency_ms} ms`;
+      document.getElementById("logins").textContent = fmt(data.overview.logins);
+      document.getElementById("updatedAt").textContent = data.updated_at ? `Updated ${new Date(data.updated_at).toLocaleString()}` : "No runtime updates yet";
+
+      renderBars("trafficChart", data.traffic_series);
+      renderBars("tokenChart", data.token_series);
+
+      renderMetricList("benchmarkList", data.benchmark_metrics || [], true);
+
+      const modeItems = Object.entries(data.mode_usage || {}).map(([label, value]) => ({ label, value }));
+      renderMetricList("modeList", modeItems, false);
+      renderMetricList("actList", data.top_acts || [], false);
+      renderMetricList("disputeList", data.dispute_analytics || [], false);
+      renderRecentRequests(data.recent_requests || []);
+      renderRecentLogins(data.recent_logins || []);
+    }
+
+    boot();
+    setInterval(boot, 5000);
+  </script>
+</body>
+</html>

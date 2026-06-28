@@ -1,6 +1,7 @@
 import argparse
 import hashlib
 import json
+import os
 import pickle
 from datetime import datetime
 from pathlib import Path
@@ -13,7 +14,7 @@ from model.paths import (
     DEFAULT_EMBEDDING_MODEL,
     VECTORSTORE_DIR,
 )
-from model.terralaw_core import build_documents_from_text
+from model.core.terralaw_core import build_documents_from_text
 
 
 DEFAULT_PROCESSED_DATA_DIR = DATA_PROCESSED_DIR
@@ -106,6 +107,21 @@ def build_vectorstore(
         "source_manifest": _source_manifest(processed_path),
     }
     metadata_path.write_text(json.dumps(metadata, indent=2), encoding="utf-8")
+
+    pinecone_result = None
+    if os.getenv("PINECONE_API_KEY", "").strip():
+        try:
+            from model.vectorstore.pinecone_store import upsert_documents
+
+            pinecone_result = upsert_documents(
+                docs,
+                namespace=os.getenv("PINECONE_NAMESPACE", "").strip(),
+            )
+            metadata["pinecone"] = pinecone_result
+            metadata_path.write_text(json.dumps(metadata, indent=2), encoding="utf-8")
+            print(f"Pinecone upsert complete: {pinecone_result}")
+        except Exception as exc:
+            print(f"Pinecone upsert failed (local pickle still saved): {exc}")
 
     print("Vectorstore saved successfully!")
     return metadata

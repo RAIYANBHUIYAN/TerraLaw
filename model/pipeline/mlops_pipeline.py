@@ -11,14 +11,14 @@ from urllib.parse import urlsplit, urlunsplit
 
 import requests
 
-from model.evaluate_rag import evaluate_cases
+from model.pipeline.evaluate_rag import evaluate_cases
 from model.paths import (
     BENCHMARKS_DIR,
     DEFAULT_API_BASE_URL,
     MLOPS_RUNS_DIR,
     PROJECT_ROOT,
 )
-from model.rag_pipeline import (
+from model.pipeline.rag_pipeline import (
     DEFAULT_EMBEDDING_MODEL,
     DEFAULT_PROCESSED_DATA_DIR,
     DEFAULT_VECTOR_DIR,

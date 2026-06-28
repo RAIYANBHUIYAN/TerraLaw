@@ -6,4 +6,7 @@ python-dotenv
 requests
 langchain-community
 langchain-core
+langchain-text-splitters
 sentence-transformers
+pinecone>=5.0.0
+psycopg[binary]>=3.1.0

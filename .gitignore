@@ -1,15 +1,24 @@
-/API.txt
 .env
 __pycache__/
 *.pyc
 *.pyo
-*.pkl
+*.log
+server*.log
+logs/
+
+# Vector index artifacts
 model/vectorstore/*
 !model/vectorstore/.gitkeep
+!model/vectorstore/*.py
+
+# Runtime reports and app data
 model/reports/mlops_runs/
 model/reports/metrics_report_*.json
 backend/reports/runtime_dashboard.json
-frontend/data/chat_history.json
-frontend/data/users.json
-*.log
-server*.log
+data/app/chat_history.json
+data/app/users.json
+
+# Frontend build
+frontend/node_modules/
+frontend/.next/
+frontend/.env.local
