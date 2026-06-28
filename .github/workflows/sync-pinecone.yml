@@ -1,0 +1,46 @@
+name: Sync Pinecone Index
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "data/processed/**"
+      - "model/core/terralaw_core.py"
+      - "model/pipeline/rag_pipeline.py"
+      - "model/vectorstore/**"
+      - "scripts/upload_pinecone.py"
+
+concurrency:
+  group: sync-pinecone
+  cancel-in-progress: false
+
+jobs:
+  upload-vectors:
+    name: Upload legal chunks to Pinecone
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Upsert vectors to Pinecone
+        env:
+          PINECONE_API_KEY: ${{ secrets.PINECONE_API_KEY }}
+          PINECONE_INDEX_NAME: ${{ secrets.PINECONE_INDEX_NAME }}
+          PINECONE_INDEX_HOST: ${{ secrets.PINECONE_INDEX_HOST }}
+          PINECONE_INTEGRATED: "false"
+          VECTORSTORE_BACKEND: pinecone
+        run: |
+          if [ -z "$PINECONE_API_KEY" ] || [ -z "$PINECONE_INDEX_HOST" ]; then
+            echo "Skip: Pinecone secrets not configured"
+            exit 0
+          fi
+          python scripts/upload_pinecone.py

@@ -1,0 +1,26 @@
+name: Smoke Test Production
+
+on:
+  workflow_run:
+    workflows: [Deploy Production]
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      backend_url:
+        description: Backend base URL
+        required: true
+        default: https://your-backend.onrender.com
+
+jobs:
+  smoke:
+    name: Verify live backend
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - name: Check backend health
+        env:
+          BACKEND_URL: ${{ github.event_name == 'workflow_dispatch' && inputs.backend_url || secrets.PRODUCTION_BACKEND_URL }}
+        run: |
+          test -n "$BACKEND_URL" || (echo "Set PRODUCTION_BACKEND_URL secret or pass backend_url input" && exit 1)
+          curl -fsS "$BACKEND_URL/" | grep -q "TerraLaw BD API"
+          curl -fsS "$BACKEND_URL/metrics" | grep -q "vectorstore_loaded"

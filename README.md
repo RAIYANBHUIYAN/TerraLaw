@@ -189,6 +189,64 @@ NEXT_PUBLIC_API_URL=https://your-backend.onrender.com
 5. Set `CORS_ORIGINS` to your Vercel URL.
 6. Run once locally: `python scripts/upload_pinecone.py` and `python scripts/setup_postgres.py`
 
+## CI/CD (GitHub Actions)
+
+Pipelines live in [`.github/workflows/`](.github/workflows/).
+
+```mermaid
+flowchart LR
+  subgraph ci [On every PR and push]
+    CI[ci.yml]
+    CI --> BackendCheck[Backend import check]
+    CI --> FrontendCheck[Frontend lint and build]
+  end
+  subgraph cd [On push to main]
+    Deploy[deploy-production.yml]
+    Sync[sync-pinecone.yml]
+    Deploy --> Postgres[Neon schema migrate]
+    Deploy --> Render[Render backend deploy]
+    Deploy --> Vercel[Vercel frontend deploy]
+    Sync --> Pinecone[Pinecone vector upload]
+  end
+  Postgres --> Neon[(Neon Postgres)]
+  Render --> BackendAPI[Render FastAPI]
+  Vercel --> FrontendApp[Vercel Next.js]
+  Pinecone --> PineconeDB[(Pinecone)]
+  FrontendApp --> BackendAPI
+  BackendAPI --> Neon
+  BackendAPI --> PineconeDB
+```
+
+| Workflow | Trigger | Purpose |
+|----------|---------|---------|
+| `ci.yml` | PR + push | Lint/build frontend, verify backend imports |
+| `deploy-production.yml` | Push to `main` | Postgres migrate, deploy Render + Vercel |
+| `sync-pinecone.yml` | Push when legal data changes | Re-upload vectors to Pinecone |
+| `smoke-test-production.yml` | After deploy (manual optional) | Curl live backend health |
+
+### GitHub Secrets to add
+
+Repo → **Settings** → **Secrets and variables** → **Actions**:
+
+| Secret | Used for |
+|--------|----------|
+| `DATABASE_URL` | Neon Postgres schema on deploy |
+| `RENDER_DEPLOY_HOOK_URL` | Trigger Render redeploy |
+| `VERCEL_TOKEN` | Deploy frontend from Actions |
+| `VERCEL_ORG_ID` | Vercel project scope |
+| `VERCEL_PROJECT_ID` | Vercel project id |
+| `NEXT_PUBLIC_API_URL` | Frontend build points to Render API |
+| `PINECONE_API_KEY` | Vector sync workflow |
+| `PINECONE_INDEX_HOST` | Vector sync workflow |
+| `PINECONE_INDEX_NAME` | Vector sync workflow (optional) |
+| `PRODUCTION_BACKEND_URL` | Smoke test after deploy |
+
+**Render deploy hook:** Render dashboard → your web service → **Settings** → **Deploy Hook** → copy URL.
+
+**Vercel IDs:** Vercel project → **Settings** → **General** (Project ID). Team/Account settings for Org ID. Create token at [vercel.com/account/tokens](https://vercel.com/account/tokens).
+
+**Alternative:** Connect Render and Vercel directly to GitHub for auto-deploy; keep Actions for CI + Postgres migrate + Pinecone sync only.
+
 ## Scripts
 
 | Command | Description |

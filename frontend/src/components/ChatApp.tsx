@@ -17,12 +17,11 @@ import type { Conversation, Message } from "@/lib/types";
 
 export function ChatApp() {
   const router = useRouter();
-  const [userId, setUserId] = useState<string | null>(null);
+  const [userId] = useState<string | null>(() => getSession()?.user_id ?? null);
   const [conversations, setConversations] = useState<Conversation[]>([]);
   const [activeId, setActiveId] = useState<string | null>(null);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
-  const [loading, setLoading] = useState(false);
   const [thinking, setThinking] = useState(false);
   const [error, setError] = useState("");
 
@@ -45,16 +44,14 @@ export function ChatApp() {
   }, []);
 
   useEffect(() => {
-    const session = getSession();
-    if (!session) {
+    if (!userId) {
       router.replace("/login");
       return;
     }
-    setUserId(session.user_id);
-    loadConversations(session.user_id).catch(() =>
+    loadConversations(userId).catch(() =>
       setError("Could not load conversations."),
     );
-  }, [router, loadConversations]);
+  }, [router, loadConversations, userId]);
 
   async function handleNewChat() {
     if (!userId) return;
